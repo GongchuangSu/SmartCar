@@ -1,2 +1,3 @@
 # SmartCar
-It's my first GitHub repository.
+## Update log
+- **2016.1.5**  Add BarChartActivity, HorizontalBarChartActivity and PieChartActivity.
