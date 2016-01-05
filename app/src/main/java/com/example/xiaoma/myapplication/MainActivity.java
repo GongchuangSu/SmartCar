@@ -29,6 +29,8 @@ import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
 import com.example.xiaoma.myapplication.chart.BarChartActivity;
+import com.example.xiaoma.myapplication.chart.HorizontalBarChartActivity;
+import com.example.xiaoma.myapplication.chart.PieChartActivity;
 import com.example.xiaoma.myapplication.view.AttrActivity;
 import com.example.xiaoma.myapplication.view.LoginActivity;
 import com.example.xiaoma.myapplication.view.SecondActivity;
@@ -250,6 +252,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.statistics) {
             Intent  statistic = new Intent(this, BarChartActivity.class);
             startActivity(statistic);
+        }
+        if (id == R.id.horizontalbarchart) {
+            Intent  horizontalbarchart = new Intent(this, HorizontalBarChartActivity.class);
+            startActivity(horizontalbarchart);
+        }
+        if (id == R.id.piechartactivity) {
+            Intent  piechartactivity = new Intent(this, PieChartActivity.class);
+            startActivity(piechartactivity);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

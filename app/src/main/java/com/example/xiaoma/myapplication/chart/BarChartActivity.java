@@ -92,6 +92,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         l.setXEntrySpace(4f);
         // 设置数据
         setData(12, 90);
+
     }
 
     @Override

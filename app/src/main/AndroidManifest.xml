@@ -61,7 +61,8 @@
         <activity android:name=".view.RegisterActivity"/>
         <activity android:name=".view.UserInfo"/>
         <activity android:name=".chart.BarChartActivity"/>
-        <activity android:name=".view.ChartActivity"/>
+        <activity android:name=".chart.HorizontalBarChartActivity"/>
+        <activity android:name=".chart.PieChartActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

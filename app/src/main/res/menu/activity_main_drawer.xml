@@ -10,9 +10,17 @@
             android:icon="@drawable/search_32"
             android:title="与WEB交互" />
         <item
-            android:id="@+id/statistics"
+        android:id="@+id/statistics"
+        android:icon="@drawable/search_32"
+        android:title="统计数据" />
+        <item
+            android:id="@+id/horizontalbarchart"
             android:icon="@drawable/search_32"
-            android:title="统计数据" />
+            android:title="HorizontalBarChart" />
+        <item
+            android:id="@+id/piechartactivity"
+            android:icon="@drawable/search_32"
+            android:title="PieChartActivity" />
     </group>
 
     <!--<item android:title="Communicate">-->
