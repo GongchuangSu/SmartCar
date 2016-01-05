@@ -9,7 +9,10 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/search_32"
             android:title="与WEB交互" />
-
+        <item
+            android:id="@+id/statistics"
+            android:icon="@drawable/search_32"
+            android:title="统计数据" />
     </group>
 
     <!--<item android:title="Communicate">-->

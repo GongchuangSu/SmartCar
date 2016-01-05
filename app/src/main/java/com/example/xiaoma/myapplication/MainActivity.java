@@ -28,9 +28,10 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
+import com.example.xiaoma.myapplication.chart.BarChartActivity;
 import com.example.xiaoma.myapplication.view.AttrActivity;
-import com.example.xiaoma.myapplication.view.ChartActivity;
 import com.example.xiaoma.myapplication.view.LoginActivity;
+import com.example.xiaoma.myapplication.view.SecondActivity;
 import com.example.xiaoma.myapplication.view.UserInfo;
 import com.github.glomadrian.velocimeterlibrary.VelocimeterView;
 
@@ -195,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 else if(cmd == CMD_SYSTEM_EXIT){
                     System.exit(0);
                 }
-
             }
         }
     }
@@ -240,19 +240,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.attributes) {
-            // Handle the camera action
             Intent attribute=new Intent(MainActivity.this, AttrActivity.class);
             startActivity(attribute);
         }
         if (id == R.id.nav_gallery) {
-//            Intent web=new Intent(MainActivity.this, SecondActivity.class);
-//            startActivity(web);
-//            Intent bar=new Intent(MainActivity.this, BarChartActivity.class);
-            Intent i = new Intent(this, ChartActivity.class);
-            startActivity(i);
+            Intent web=new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(web);
         }
-
-
+        if (id == R.id.statistics) {
+            Intent  statistic = new Intent(this, BarChartActivity.class);
+            startActivity(statistic);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -340,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
             }
-            Log.i("BaiduLocationApiDem", sb.toString());
+            //Log.i("BaiduLocationApiDem", sb.toString());
         }
     }
 }
