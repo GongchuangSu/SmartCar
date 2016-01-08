@@ -4,12 +4,15 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
+
 import com.github.glomadrian.velocimeterlibrary.utils.DimensionUtils;
 
 /**
  * @author Adrián García Lomas
  */
+
 public class InsideVelocimeterMarkerPainterImp implements InsideVelocimeterMarkerPainter {
 
   private Context context;
@@ -26,6 +29,9 @@ public class InsideVelocimeterMarkerPainterImp implements InsideVelocimeterMarke
   private int lineWidth;
   private int lineSpace;
   private int color;
+  private Paint paint_number;
+  private Path path;
+  private String speed_number = " 0       10      20      30      40       50      60      70       80      90      100    110    120";
 
   public InsideVelocimeterMarkerPainterImp(int color, Context context) {
     this.context = context;
@@ -44,22 +50,37 @@ public class InsideVelocimeterMarkerPainterImp implements InsideVelocimeterMarke
   }
 
   private void initPainter() {
+    // 设置小线条属性
     paint = new Paint();
-    paint.setAntiAlias(true);
-    paint.setStrokeWidth(strokeWidth);
+    paint.setAntiAlias(true);  // 消除锯齿
+    paint.setStrokeWidth(strokeWidth);  // 设置paint的外框宽度
     paint.setColor(color);
     paint.setStyle(Paint.Style.STROKE);
-    paint.setPathEffect(new DashPathEffect(new float[] { lineWidth, lineSpace }, 0));
+    paint.setPathEffect(new DashPathEffect(new float[]{lineWidth, lineSpace}, 0));
+    // 设置数字属性
+    paint_number = new Paint();
+    paint_number.setAntiAlias(true);
+    paint_number.setColor(color);
+    paint_number.setStyle(Paint.Style.STROKE);
+    paint_number.setTextSize(12);
+    paint_number.setStrokeWidth(1);
   }
 
   private void initCircle() {
     int pading = externalStrokeWidth + (strokeWidth / 2) + margin + blurMargin;
+    // 绘制圆弧
     circle = new RectF();
     circle.set(pading, pading, width - pading, height - pading);
+    // 设置数字显示路径
+    path = new Path();
+    path.addArc(circle, startAngle - 3, finishAngle + 10);
   }
 
   @Override public void draw(Canvas canvas) {
+    // 绘制线条
     canvas.drawArc(circle, startAngle, finishAngle, false, paint);
+    // 以path为路径绘制数字
+    canvas.drawTextOnPath(speed_number, path, 0, 18, paint_number);
   }
 
   @Override public void setColor(int color) {

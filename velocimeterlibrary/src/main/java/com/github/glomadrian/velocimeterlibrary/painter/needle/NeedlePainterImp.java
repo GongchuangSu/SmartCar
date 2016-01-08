@@ -55,6 +55,7 @@ public class NeedlePainterImp implements NeedlePainter {
   private void initPainter() {
     paint = new Paint();
     paint.setColor(color);
+    paint.setAntiAlias(true);  // 消除锯齿
     paint.setStrokeWidth(strokeWidth);
   }
 

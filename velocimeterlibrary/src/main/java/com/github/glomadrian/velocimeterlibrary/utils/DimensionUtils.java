@@ -7,7 +7,6 @@ import android.util.DisplayMetrics;
  * @author Adrián García Lomas
  */
 public class DimensionUtils {
-
   private DimensionUtils() {
     //No instances allowed    
   }

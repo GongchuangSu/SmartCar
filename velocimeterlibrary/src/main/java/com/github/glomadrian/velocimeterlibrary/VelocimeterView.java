@@ -29,6 +29,7 @@ import com.github.glomadrian.velocimeterlibrary.utils.DimensionUtils;
 /**
  * @author Adrián García Lomas
  */
+
 public class VelocimeterView extends View {
 
   private ValueAnimator progressValueAnimator;
@@ -46,7 +47,7 @@ public class VelocimeterView extends View {
   private int min = 0;
   private float progressLastValue = min;
   private float nidleLastValue = min;
-  private int max = 100;
+  private int max = 120;
   private float value;
   private int duration = 1000;
   private long progressDelay = 350;
@@ -54,8 +55,6 @@ public class VelocimeterView extends View {
   private int insideProgressColor = Color.parseColor("#094e35");
   private int externalProgressColor = Color.parseColor("#9cfa1d");
   private int progressBlurColor = Color.parseColor("#44ff2b");
-  private int bottomVelocimeterColor = Color.parseColor("#1E1E1E");
-  private boolean showBottomVelocimeter = true;
   private int internalVelocimeterColor = Color.WHITE;
   private int needdleColor = Color.RED;
   private int needleBlurColor = Color.RED;
@@ -74,7 +73,6 @@ public class VelocimeterView extends View {
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     int size;
     int width = getMeasuredWidth();
@@ -121,7 +119,6 @@ public class VelocimeterView extends View {
     blurProgressVelocimeterPainter =
         new BlurProgressVelocimeterPainter(progressBlurColor, max, marginPixels, getContext());
     initValueAnimator();
-
     // 设置显示数字的大小及位置
     digitalPainter = new DigitalImp(digitalNumberColor, getContext(),
         DimensionUtils.getSizeInPixels(60, context), DimensionUtils.getSizeInPixels(45, context),
@@ -136,14 +133,14 @@ public class VelocimeterView extends View {
         attributes.getColor(R.styleable.VelocimeterView_inside_progress_color, insideProgressColor);
     externalProgressColor = attributes.getColor(R.styleable.VelocimeterView_external_progress_color,
         externalProgressColor);
-    progressBlurColor =
-        attributes.getColor(R.styleable.VelocimeterView_progress_blur_color, progressBlurColor);
-    bottomVelocimeterColor =
-        attributes.getColor(R.styleable.VelocimeterView_bottom_velocimeter_color,
-            bottomVelocimeterColor);
-    showBottomVelocimeter =
-        attributes.getBoolean(R.styleable.VelocimeterView_show_bottom_bar,
-                showBottomVelocimeter);
+//    progressBlurColor =
+//        attributes.getColor(R.styleable.VelocimeterView_progress_blur_color, progressBlurColor);
+//    bottomVelocimeterColor =
+//        attributes.getColor(R.styleable.VelocimeterView_bottom_velocimeter_color,
+//            bottomVelocimeterColor);
+//    showBottomVelocimeter =
+//        attributes.getBoolean(R.styleable.VelocimeterView_show_bottom_bar,
+//                showBottomVelocimeter);
     internalVelocimeterColor =
         attributes.getColor(R.styleable.VelocimeterView_internal_velocimeter_color,
             internalVelocimeterColor);
@@ -164,15 +161,15 @@ public class VelocimeterView extends View {
 
   @Override protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    digitalBlurPainter.draw(canvas);
-    digitalPainter.draw(canvas);
-    blurProgressVelocimeterPainter.draw(canvas);
-    internalVelocimeterPainter.draw(canvas);
-    progressVelocimeterPainter.draw(canvas);
-    insideVelocimeterPainter.draw(canvas);
-    insideVelocimeterMarkerPainter.draw(canvas);
-    linePainter.draw(canvas);
-    blurLinePainter.draw(canvas);
+    //digitalBlurPainter.draw(canvas);
+    digitalPainter.draw(canvas);                 // 数字显示
+    //blurProgressVelocimeterPainter.draw(canvas);
+    internalVelocimeterPainter.draw(canvas);     // 内部颜色设置
+    progressVelocimeterPainter.draw(canvas);     // 高亮圆环进度显示
+    insideVelocimeterPainter.draw(canvas);       // 白色圆环显示
+    insideVelocimeterMarkerPainter.draw(canvas); // 白色圆环线条显示
+    linePainter.draw(canvas);                    // 指针显示
+    //blurLinePainter.draw(canvas);//去掉阴影
     invalidate();
   }
 
@@ -217,7 +214,6 @@ public class VelocimeterView extends View {
 
   public void setProgress(Interpolator interpolator) {
     this.interpolator = interpolator;
-
     if (progressValueAnimator != null) {
       progressValueAnimator.setInterpolator(interpolator);
     }
@@ -233,14 +229,14 @@ public class VelocimeterView extends View {
 
   private void updateValueProgress(float value) {
     progressVelocimeterPainter.setValue(value);
-    //blurProgressVelocimeterPainter.setValue(value);
+    //blurProgressVelocimeterPainter.setValue(value);  //  设置转盘阴影效果
   }
 
   private void updateValueNeedle(float value) {
     linePainter.setValue(value);
     //blurLinePainter.setValue(value);
     digitalPainter.setValue(value);
-    //digitalBlurPainter.setValue(value);
+    //digitalBlurPainter.setValue(value);  // 设置数字阴影效果
   }
 
   private class ProgressAnimatorListenerImp implements ValueAnimator.AnimatorUpdateListener {

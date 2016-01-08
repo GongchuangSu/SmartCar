@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ff2c2c2c"
     tools:context="com.example.xiaoma.myapplication.MainActivity"
     tools:showIn="@layout/app_bar_main">
     <!--仪表盘-->
@@ -17,7 +18,7 @@
         <com.github.glomadrian.velocimeterlibrary.VelocimeterView
             android:id="@+id/velocimeter1"
             android:layout_width="300dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             />
     </LinearLayout>
     <!--已行驶里程-->
@@ -227,7 +228,7 @@
         android:layout_weight="4"
         android:background="#ffffff"
         android:orientation="vertical">
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
@@ -241,11 +242,23 @@
                 android:layout_above="@+id/button"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
-        </LinearLayout>
+
+            <Button
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:text=""
+                android:background="@drawable/define_location"
+                android:id="@+id/location"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right|top" />
+        </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="#ff2c2c2c"
+
             >
             <Button
                 android:layout_width="match_parent"
