@@ -1,6 +1,5 @@
 package com.example.xiaoma.myapplication.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.NavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -18,8 +19,7 @@ import com.example.xiaoma.myapplication.model.MyDBOpenHelper;
 /**
  * Created by SGC on 2015/12/29.
  */
-
-public class UserInfo extends Activity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     private Context mContext;
     private SQLiteDatabase db;
     private MyDBOpenHelper myDBHelper;
@@ -30,6 +30,7 @@ public class UserInfo extends Activity implements View.OnClickListener, Navigati
     private TextView phonenumber;
     private TextView address;
     private String account;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class UserInfo extends Activity implements View.OnClickListener, Navigati
         setContentView(R.layout.userinfo);
 
         // 以下三条语句每次进行数据库操作时都必须先执行
-        mContext = UserInfo.this;
+        mContext = UserInfoActivity.this;
         myDBHelper = new MyDBOpenHelper(mContext, "db_ebike", null, 1);
         db = myDBHelper.getWritableDatabase();
 
@@ -76,7 +77,12 @@ public class UserInfo extends Activity implements View.OnClickListener, Navigati
         age = (TextView) findViewById(R.id.age);
         phonenumber = (TextView) findViewById(R.id.phonenumber);
         address = (TextView) findViewById(R.id.address);
-
+        // Toolbar设置
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.back_24);
+        toolbar.setNavigationOnClickListener(listener);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); // 隐藏原来的Title
     }
 
     /**
@@ -98,11 +104,21 @@ public class UserInfo extends Activity implements View.OnClickListener, Navigati
                     bundle.putString("phonenumber", cursor.getString(cursor.getColumnIndex("phonenumber")));
                     bundle.putString("address", cursor.getString(cursor.getColumnIndex("address")));
                     msg.setData(bundle);
-                    UserInfo.this.mHandler.sendMessage(msg);
+                    UserInfoActivity.this.mHandler.sendMessage(msg);
                 }
             }
         }.start();
     }
+
+    /**
+     * 功能：点击toolbar的NavigationIcon，返回主界面
+     */
+    private Toolbar.OnClickListener listener = new Toolbar.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shenma_v0.1</string>
+    <string name="app_name">Shenma_V0.3</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -22,7 +22,7 @@
     <string name="cell_box_nums">电池箱数：</string>
     <string name="cell_serial_nums">电池串数：</string>
 
-    <string name="login">登 录</string>
+    <string name="login">登  录</string>
     <string name="auto_save_password">记住密码</string>
     <string name="register2">注册新帐号</string>
     <string name="more_login_setting">更多登录选项</string>
@@ -32,8 +32,9 @@
     <string name="info_troopmessage">接收群消息</string>
     <string name="account">账户</string>
     <string name="password">密码</string>
-    <string name="qr_register">App注册</string>
+    <string name="register">注  册</string>
     <string name="register_tip">提示： \n带*项为必填项\n填写邮箱方便您找回密码以及了解更多App信息</string>
 
-
+    <string name="strWelLogo">欢迎Logo</string>
+    <string name="strWelcomeToMain">欢迎来到主页</string>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/registpage"
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:layout_width="match_parent"
@@ -11,10 +12,22 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         >
-        <TextView android:layout_centerInParent="true" android:textSize="20.0sp"
-            android:textColor="#ff545454"  android:layout_width="match_parent"
-            android:layout_height="match_parent" android:text="@string/qr_register"
-            android:gravity="center"/>
+        <!--support.v7中的Toolbar只有Android 5 以上的版本才能使用-->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:minHeight="?attr/actionBarSize">
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注  册"
+                android:layout_gravity="center"/>
+        </android.support.v7.widget.Toolbar>
     </LinearLayout>
     <!--详细注册信息-->
     <LinearLayout
@@ -163,9 +176,16 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-        <Button android:id="@+id/register_btn"  android:textSize="18.0sp"
-            android:textColor="#ff000000"  android:background="@drawable/op_bg_selector"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="注 册" android:gravity="center"/>
+        <Button
+            android:textSize="18.0sp"
+            android:textColor="#ff333333"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/register_btn"
+            android:background="@drawable/button_shape"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            />
     </LinearLayout>
 </LinearLayout>

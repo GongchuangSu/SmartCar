@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,9 +40,10 @@ import com.example.xiaoma.myapplication.chart.PieChartActivity;
 import com.example.xiaoma.myapplication.view.AttrActivity;
 import com.example.xiaoma.myapplication.view.LoginActivity;
 import com.example.xiaoma.myapplication.view.SecondActivity;
-import com.example.xiaoma.myapplication.view.UserInfo;
+import com.example.xiaoma.myapplication.view.UserInfoActivity;
 import com.github.glomadrian.velocimeterlibrary.VelocimeterView;
 
+import java.util.List;
 import java.util.logging.Handler;
 
 
@@ -70,8 +72,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     BaiduMap mBaiduMap;
     boolean isFirstLoc =true;// 是否首次定位
     Button GPS_btn;
-    //仪表盘
+    // 仪表盘
     private VelocimeterView velocimeter;
+    // 引导页
+    private View view1,view2,view3;
+    private List<View> viewList;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMaxAndMinZoomLevel(19, 11);//设置缩放级别
 
-
-
         mBaiduMap.setMyLocationEnabled(true);
         // 定位初始化
         mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
@@ -105,8 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //option.setCoorType("bd09ll"); // 设置坐标类型
         //option.setScanSpan(1000);
         mLocationClient.start();
-
-
 
 
         GPS_btn=(Button)findViewById(R.id.location);
@@ -196,10 +198,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if("未登录".equals(Login.getText())) {
                     Intent loginactivity = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(loginactivity);
-
                 }
                 else{
-                    Intent userinfo = new Intent(MainActivity.this, UserInfo.class);
+                    Intent userinfo = new Intent(MainActivity.this, UserInfoActivity.class);
                     // 通过Bundle对象存储需要传递的数据
                     Bundle bundle = new Bundle();
                     bundle.putString("username", Login.getText().toString());
@@ -217,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Login_exp.setText("");
         }
     }
-
 
     @Override
     protected void onResume() {
