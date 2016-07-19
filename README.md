@@ -29,3 +29,9 @@
 
 ## 网络通信流程图
 <img src="http://i.imgur.com/fSyYmXH.jpg"/>
+
+## 数据结构设计
+<img height="80%" width="80%" src="http://i.imgur.com/9VWtPPl.jpg"/>
+<img height="80%" width="80%" src="http://i.imgur.com/bjxiLTC.jpg"/>
+<img height="80%" width="80%" src="http://i.imgur.com/3SJ59q8.jpg"/>
+<img height="80%" width="80%" src="http://i.imgur.com/Rz1hT3C.jpg"/>
